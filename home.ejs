@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crud</title>
+    <link rel="stylesheet" href="/css/semantic.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="ui container">
+            <div class="ui menu">
+                <div class="header item">
+                  Our Company
+                </div>
+                <a class="item">
+                  About Us
+                </a>
+                <a class="item">
+                  Jobs
+                </a>
+                <a class="item">
+                  Locations
+                </a>
+              </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="ui container">
+        <form action="/add" class="ui form" method="post">
+            <div class="ui three fields">
+                <div class="field">
+                    <label for="firstname" class="ui label green">Enter first name</label>
+                    <input type="text" name="firstname" placeholder="Enter first name">
+                </div>
+                <div class="field">
+                    <label for="lastname" class="ui label green">Enter last Name</label>
+                    <input type="text" name="lastname" placeholder="Enter last Name">
+                </div>
+                <div class="field">
+                    <label for="username" class="ui label green">Enter user name</label>
+                    <input type="text" name="username" placeholder="user name">
+                </div>
+                <div class="field">
+                    <label for="password" class="ui label green">Enter password</label>
+                    <input type="password" name="password" placeholder="password">
+                </div>
+            </div>
+            <div class="ui fluid field">
+                <button type="submit"  class="ui button green fluid">save</button>
+            </div>
+        </form>
+        <br><br>
+        <table class="ui table">
+            <thead>
+                <th>firstname</th>
+                <th>lastname</th>
+                <th>username</th>
+                <th>password</th>
+                <th>edit</th>
+                <th>delete</th>
+            </thead>
+            <tbody>   
+                <% emps.forEach((emp)=>
+                {
+                    %> <tr>
+                        <td><%- emp.firstname %></td>
+                        <td><%- emp.lastname %></td>
+                        <td><%- emp.username %></td>
+                        <td><%- emp.password %></td>
+                        <td><a href="/edit/<%= emp._id %>" class="ui green button"><i class="edit outline icon"></i>edit</a></td>
+                        <td> <a onclick="deleteEmployee('<%= emp._id %>')" class="ui red button"><i class="minus circle icon"></i>delete</a></td>
+
+
+                    </tr><%
+                });
+                %>
+            </tbody>
+        </table>
+  
+    </div>
+    <script src="/Node/Crud/public/js/semantic.min.js"></script>
+    <script>
+        function deleteEmployee(id) {
+            fetch(`/delete/${id}`, {
+                method: 'DELETE'
+            }).then(response => {
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    console.error('Failed to delete employee');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

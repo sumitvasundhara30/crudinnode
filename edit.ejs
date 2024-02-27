@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crud</title>
+    <link rel="stylesheet" href="/css/semantic.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="ui container">
+            <div class="ui menu">
+                <div class="header item">
+                  Our Company
+                </div>
+                <a class="item">
+                  About Us
+                </a>
+                <a class="item">
+                  Jobs
+                </a>
+                <a class="item">
+                  Locations
+                </a>
+              </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="ui container">
+        <div class="ui segment">
+            <form action="/edit/<%= emp._id %>" class="ui form" method="post">
+                <div class="field">
+                    <label for="firstname" class="ui label green">Enter first name </label>
+                    <input type="text" name="firstname" placeholder="Enterfirstname" id="firstname" value="<%= emp.firstname %>">
+                </div>
+                <div class="field">
+                  <label for="lastname" class="ui label green">Enter last Name</label>
+                  <input type="text" name="lastname" placeholder="Enter last Name" value="<%= emp.lastname %>">
+                </div>
+              <div class="field">
+                  <label for="username" class="ui label green">Enter user name</label>
+                  <input type="text" name="username" placeholder="user name" value="<%= emp.username %>">
+              </div>
+              <div class="field">
+                  <label for="password" class="ui label green">Enter password</label>
+                  <input type="password" name="password" placeholder="password" value="<%= emp.password %>">
+              </div>
+                <div class="field">
+                    <button type="submit" class="ui button green fluid centered">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/Node/Crud/public/js/semantic.min.js"></script>
+</body>
+</html>
